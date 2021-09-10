@@ -2,7 +2,7 @@
   "name": "box2d-lite",
   "version-string": "0.0.1",
   "dependencies": [
-    "beicode", 
+    "beicode",
     "glad",
     "glfw3",
     {
