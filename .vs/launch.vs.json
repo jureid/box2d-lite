@@ -3,15 +3,12 @@
   "defaults": {},
   "configurations": [
     {
-      "type": "remoteWindows",
-      "name": "samples-noGUI.exe (samples-noGUI\\samples-noGUI.exe)",
+      "type": "cppgdb",
+      "name": "samples",
       "project": "CMakeLists.txt",
-      "projectTarget": "samples-noGUI.exe (samples-noGUI\\samples-noGUI.exe)",
-      "remoteMachineName": "", // remote Windows server name or IP address here
-      "cwd": "${debugInfo.defaultWorkingDirectory}",
-      "program": "${debugInfo.fullTargetPath}",
-      "deploy": [],
-      "comment": "Learn how to configure remote debugging. See here for more info https://docs.microsoft.com/cpp/build/cmake-remote-debugging",
+      "projectTarget": "samples",
+      "comment": "Learn how to configure WSL debugging. For more info, see http://aka.ms/vslinuxdebug",
+      "debuggerConfiguration": "gdb",
       "args": [],
       "env": {}
     }
