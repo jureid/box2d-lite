@@ -2,3 +2,5 @@ out/
 .vs/
 vcpkg/
 vcpkg_installed/
+hooks/
+lfs/
