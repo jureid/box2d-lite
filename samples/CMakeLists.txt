@@ -19,5 +19,4 @@ target_link_libraries(samples
 	PUBLIC 
 		box2d-lite 
 	PRIVATE	
-		glad::glad glfw imgui::imgui
-)
+		glad::glad glfw imgui::imgui)

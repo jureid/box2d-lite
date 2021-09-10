@@ -529,7 +529,7 @@ static void Keyboard(GLFWwindow* window, int key, int scancode, int action, int 
 	{
 	case GLFW_KEY_ESCAPE:
 		// Quit
-		glfwSetWindowShouldClose(mainWindow, GL_TRUE);
+		//glfwSetWindowShouldClose(mainWindow, GL_TRUE);
 		break;
 
 	case '1':
