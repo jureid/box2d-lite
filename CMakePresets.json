@@ -84,7 +84,8 @@
       },
       "vendor": {
         "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
+          "copyAdditionalIncludeDirectoriesList": [ "$env{HOME}/.vs/box2d-lite/out/build/linux-debug/vcpkg_installed/x64-linux" ]
         }
       }
     },
