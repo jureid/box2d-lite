@@ -2,7 +2,7 @@
 name: CI
 
 # Run CI on every push
-# on: push
+on: push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,7 +16,7 @@ jobs:
         os: ['windows-2019', 'ubuntu-20.04']
         include:
           - os: 'windows-2019'
-            triplet: 'x86-windows'
+            triplet: 'x64-windows'
             mono: ''
           - os: 'ubuntu-20.04'
             triplet: 'x64-linux'
@@ -39,7 +39,7 @@ jobs:
           git -C vcpkg fetch --unshallow
       
       # Install CMake 3.20 
-      - uses: lukka/get-cmake@cmake-3.20
+      - uses: lukka/get-cmake@latest
 
       # Setup vcpkg
       - name: Restore from cache and run vcpkg
@@ -60,7 +60,6 @@ jobs:
           -name "WillBuikGithub"
           -username "WillBuik"
           -password "${{ secrets.GITHUB_TOKEN }}"
-
        # Update apt
       - name: 'Update apt' 
         shell: 'bash'
@@ -76,11 +75,11 @@ jobs:
         # Configure and build on Windows with Ninja and cl
       - uses: ilammy/msvc-dev-cmd@v1  
         with:
-          arch: 'x86'
+          arch: 'x64'
       - name: 'Configure and build on Windows'
         run: |
-          cmake --preset=x86-windows 
-          cmake --build --preset verbose-build
+          cmake --preset=x64-debug
+          cmake --build --preset verbose-build-windows
         env:
             VCPKG_BINARY_SOURCES: 'clear;nuget,WillBuikGithub,readwrite'
         if: ${{ matrix.os == 'windows-2019' }}
@@ -88,8 +87,8 @@ jobs:
         # Configure and build on Linux with Ninja and gcc
       - name: 'Configure and build on Linux'
         run: |
-          cmake --preset=linux-base 
-          cmake --build --preset linux-clean-build
+          cmake --preset=linux-debug 
+          cmake --build --preset verbose-build-linux
         env:
             VCPKG_BINARY_SOURCES: 'clear;nuget,WillBuikGithub,readwrite'
         if: ${{ matrix.os == 'ubuntu-20.04' }}
@@ -97,12 +96,11 @@ jobs:
         # Run CTest on Windows
       - name: 'Run CTest on Windows'
         shell: 'bash'
-        run: 'ctest --preset windows-core-test'
+        run: 'ctest --preset core-test-windows'
         if: ${{ matrix.os == 'windows-2019' }}
 
         # Run CTest on Linux
       - name: 'Run CTest on Linux'
         shell: 'bash'
-        run: 'ctest --preset linux-core-test'
+        run: 'ctest --preset core-test-linux'
         if: ${{ matrix.os == 'ubuntu-20.04' }}
-    

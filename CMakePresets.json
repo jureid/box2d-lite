@@ -85,7 +85,7 @@
       "vendor": {
         "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
           "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
-          "copyAdditionalIncludeDirectoriesList": [ "$env{HOME}/.vs/box2d-lite/out/build/linux-debug/vcpkg_installed/x64-linux" ]
+          "copyAdditionalIncludeDirectoriesList": [ "$env{HOME}/.vs/box2d-lite-actions/out/build/linux-debug/vcpkg_installed/x64-linux/include" ]
         }
       }
     },
@@ -97,6 +97,36 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "verbose-build-linux",
+      "displayName": "Verbose Build",
+      "description": "Passes -v to Ninja",
+      "configurePreset": "linux-debug",
+      "nativeToolOptions": [ "-v" ]
+    },
+    {
+      "name": "verbose-build-windows",
+      "displayName": "Verbose Build",
+      "configurePreset": "x64-debug",
+      "inherits": "verbose-build-linux"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "core-test-linux",
+      "description": "Enable output on failure",
+      "configurePreset": "linux-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "core-test-windows",
+      "inherits": "core-test-linux",
+      "configurePreset": "x64-debug"
     }
   ]
 }
