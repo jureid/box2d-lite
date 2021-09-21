@@ -11,6 +11,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <chrono>
+#include <thread>
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -529,7 +531,7 @@ static void Keyboard(GLFWwindow* window, int key, int scancode, int action, int 
 	{
 	case GLFW_KEY_ESCAPE:
 		// Quit
-		//glfwSetWindowShouldClose(mainWindow, GL_TRUE);
+		glfwSetWindowShouldClose(mainWindow, GL_TRUE);
 		break;
 
 	case '1':
@@ -612,6 +614,10 @@ int main(int, char**)
 		glfwTerminate();
 		return -1;
 	}
+
+	// Wait half a second to collect stale events from last session and get rid of them before the handlers are set up
+	// std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	// glfwPollEvents();
 
 	glfwSwapInterval(1);
 	glfwSetWindowSizeCallback(mainWindow, Reshape);

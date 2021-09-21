@@ -3,14 +3,13 @@
   "configurePresets": [
     {
       "name": "base",
-      "description": "Sets Ninja generator, binary and install directory, cl.exe, vcpkg toolchain and environment",
+      "description": "For more information: http://aka.ms/cmakepresetsvs",
       "hidden": true,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "installDir": "${sourceDir}/out/install/${presetName}",
       "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "cl",
         "CMAKE_CXX_COMPILER": "cl"
       },
       "environment": {
@@ -71,7 +70,6 @@
       "displayName": "Linux Debug",
       "description": "Sets GCC",
       "inherits": "base",
-      "toolchainFile": "$env{HOME}/vcpkg/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
@@ -100,6 +98,18 @@
     }
   ],
   "buildPresets": [
+    {
+      "name": "default-build-linux",
+      "displayName": "Default",
+      "configurePreset": "linux-debug",
+      "description": "Vanilla build"
+    },
+    {
+      "name": "default-build-windows",
+      "displayName": "Default",
+      "configurePreset": "x64-debug",
+      "description": "Vanilla build"
+    },
     {
       "name": "verbose-build-linux",
       "displayName": "Verbose Build",

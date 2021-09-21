@@ -1,5 +1,5 @@
 # Build and test a CMake project with vcpkg and CMakePresets.json on Windows and Linux
-name: CI
+name: CI 
 
 # Run CI on every push
 on: push

@@ -1,10 +1,11 @@
 {
   "name": "box2d-lite",
+  "description": "For more information: http://aka.ms/vcpkg",
   "version-string": "0.0.1",
   "dependencies": [
     "beicode",
-    "glad",
     "glfw3",
+    "glad",
     {
       "name": "gtest",
       "version>=": "1.10.0"
